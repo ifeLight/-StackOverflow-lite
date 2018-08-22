@@ -5,6 +5,7 @@ import bodyParser from "body-parser"
 import signupcontroller from "./controllers/signup";
 import loginController from "./controllers/signin";
 import postQuestioncontroller from "./controllers/postQuestion";
+import getAllQuestionsController from "./controllers/getAllQuestions"
 
 import isAuthenticated from "./policies/isAuthenticated";
 
@@ -39,7 +40,7 @@ v1app.get("/", (req, res) => {
   */
 
 //Fetch all questions Endpoint
-v1app.get("/questions", () => {});
+v1app.get("/questions", getAllQuestionsController);
 
 // Fetch a question Endpoint
 v1app.get("/questions/:questionId", () => {});
