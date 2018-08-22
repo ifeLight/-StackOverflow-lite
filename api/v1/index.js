@@ -8,6 +8,8 @@ import postQuestioncontroller from "./controllers/postQuestion";
 import getAllQuestionsController from "./controllers/getAllQuestions";
 import getQuestionController from "./controllers/getQuestion";
 import deleteQuestionController from "./controllers/deleteQuestion";
+import postAnswerController from "./controllers/postAnswer";
+import getAnswersController from "./controllers/getAnswers";
 
 import isAuthenticated from "./policies/isAuthenticated";
 
@@ -54,10 +56,10 @@ v1app.post("/questions", [isAuthenticated, postQuestioncontroller]);
 v1app.delete("/questions/:questionId", [isAuthenticated, deleteQuestionController]);
 
 // Post an answer to a question Endpoint
-v1app.post("/questions/:questionId/answers", () => {});
+v1app.post("/questions/:questionId/answers", [isAuthenticated, postAnswerController]);
 
 // Get list of answers to a question Endpoint
-v1app.get("/questions/:questionId/answers", () => {});
+v1app.get("/questions/:questionId/answers", getAnswersController);
 
 // Mark an answer to a question as Preferred Endpoint
 v1app.put("/questions/:questionId/answers/:answerId", () => {});

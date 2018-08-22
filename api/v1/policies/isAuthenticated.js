@@ -19,7 +19,7 @@ const isAuthenticated = function (req, res, next) {
         });
     } else {
         //console.log(decoded);
-        req.app.set("userId", decoded.id);
+        req.app.set("userId", decoded.id); //controllers depend on this
         next();
     }
 }

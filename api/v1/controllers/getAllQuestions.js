@@ -26,6 +26,10 @@ const getAllQuestions = function getAllQuestionsController(req, res) {
     if ((page && isNumber(parseInt(page))) && (limit && isNumber(parseInt(limit)))) {
         let offset = limit * (page - 1);
         query = query + " LIMIT " + limit.toString() + " OFFSET " + offset.toString();
+    } else {
+        return res.status(400).json({
+            message : "Unable to parse queries"
+        })
     }
 
     (async () => {
@@ -36,6 +40,8 @@ const getAllQuestions = function getAllQuestionsController(req, res) {
             res.status(200).json({
                 page,
                 limit,
+                message : "Questions successfully fetched",
+                count : resp.rowCount,
                 data : resp.rows
             })
 
