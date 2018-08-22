@@ -21,7 +21,8 @@ const signup = function signupController(req, res) {
                 
                 let query = `INSERT INTO users (email, password, display_name) VALUES ($1, $2, $3) RETURNING user_id`;
                 const resp = await client.query(query, [email, hashedPassword, displayName]);
-                const token = jwt.sign({id : resp.rows[0].id}, config.tokenSecret, {expiresIn: 86400});
+                console.log(resp.rows[0]);
+                const token = jwt.sign({id : resp.rows[0].user_id}, config.tokenSecret, {expiresIn: 86400});
 
                 res.status(200).json({
                     auth : true,

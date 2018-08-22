@@ -17,7 +17,7 @@ app.use(logger('dev'));
 
 
 app.get("/", (req, res) => {
-    res.send("Page working yeah")
+    res.send("Page working ye")
 })
 
 

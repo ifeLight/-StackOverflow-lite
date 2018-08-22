@@ -4,6 +4,9 @@ import bodyParser from "body-parser"
 
 import signupcontroller from "./controllers/signup";
 import loginController from "./controllers/signin";
+import postQuestioncontroller from "./controllers/postQuestion";
+
+import isAuthenticated from "./policies/isAuthenticated";
 
 const v1app = Router();
 
@@ -42,7 +45,7 @@ v1app.get("/questions", () => {});
 v1app.get("/questions/:questionId", () => {});
 
 // Add a question Endpoint
-v1app.post("/questions", () => {});
+v1app.post("/questions", [isAuthenticated, postQuestioncontroller]);
 
 // delete a question Endpoint
 v1app.delete("/questions/:questionId", () => {});
