@@ -5,8 +5,9 @@ import bodyParser from "body-parser"
 import signupcontroller from "./controllers/signup";
 import loginController from "./controllers/signin";
 import postQuestioncontroller from "./controllers/postQuestion";
-import getAllQuestionsController from "./controllers/getAllQuestions"
-import getQuestionController from "./controllers/getQuestion"
+import getAllQuestionsController from "./controllers/getAllQuestions";
+import getQuestionController from "./controllers/getQuestion";
+import deleteQuestionController from "./controllers/deleteQuestion";
 
 import isAuthenticated from "./policies/isAuthenticated";
 
@@ -21,7 +22,7 @@ v1app.use(bodyParser.json());
 
 // Test
 v1app.get("/", (req, res) => {
-    res.status(200).send("v1 app initiated")
+    res.status(200).send("Stackoverflow v1 app")
 })
 
 
@@ -50,10 +51,13 @@ v1app.get("/questions/:questionId", getQuestionController);
 v1app.post("/questions", [isAuthenticated, postQuestioncontroller]);
 
 // delete a question Endpoint
-v1app.delete("/questions/:questionId", () => {});
+v1app.delete("/questions/:questionId", [isAuthenticated, deleteQuestionController]);
 
 // Post an answer to a question Endpoint
 v1app.post("/questions/:questionId/answers", () => {});
+
+// Get list of answers to a question Endpoint
+v1app.get("/questions/:questionId/answers", () => {});
 
 // Mark an answer to a question as Preferred Endpoint
 v1app.put("/questions/:questionId/answers/:answerId", () => {});
