@@ -12,7 +12,7 @@ const getAllQuestions = function getAllQuestionsController(req, res) {
         limit = 10
     } = req.query;
 
-    let query = `SELECT q.question_id, u.display_name, u.user_id, q.content, q.title, u.email, q.created_on  FROM questions AS q
+    let query = `SELECT q.question_id, u.display_name, u.user_id, q.title, q.created_on  FROM questions AS q
             INNER JOIN users AS u
             ON q.user_id = u.user_id
             ORDER BY`;
@@ -31,7 +31,7 @@ const getAllQuestions = function getAllQuestionsController(req, res) {
     (async () => {
         const client = await db.connect()
         try {
-            console.log(query);
+            //console.log(query);
             const resp = await client.query(query);
             res.status(200).json({
                 page,

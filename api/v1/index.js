@@ -6,6 +6,7 @@ import signupcontroller from "./controllers/signup";
 import loginController from "./controllers/signin";
 import postQuestioncontroller from "./controllers/postQuestion";
 import getAllQuestionsController from "./controllers/getAllQuestions"
+import getQuestionController from "./controllers/getQuestion"
 
 import isAuthenticated from "./policies/isAuthenticated";
 
@@ -43,7 +44,7 @@ v1app.get("/", (req, res) => {
 v1app.get("/questions", getAllQuestionsController);
 
 // Fetch a question Endpoint
-v1app.get("/questions/:questionId", () => {});
+v1app.get("/questions/:questionId", getQuestionController);
 
 // Add a question Endpoint
 v1app.post("/questions", [isAuthenticated, postQuestioncontroller]);
