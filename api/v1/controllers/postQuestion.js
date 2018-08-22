@@ -2,6 +2,7 @@ import db from "../../../config/db";
 const postQuestion = function postAQuestionController (req, res) {
     const { title, content } = req.body;
     const userId = req.app.get("userId");
+    
     if (!title || ! content) { 
         return res.status(400).json({
         message : "Question can not be empty",
