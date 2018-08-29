@@ -4,7 +4,7 @@ import db from '../config/db';
  * Creation of Questions Table
  */
 
-(async () => {
+const createQuestionsTable = async () => {
     const client = await db.connect()
     try {
         let query = `CREATE TABLE IF NOT EXISTS questions (
@@ -20,4 +20,6 @@ import db from '../config/db';
     } finally {
         client.release()
     }
-})().catch(e => console.log(e.stack))
+}
+
+export default createQuestionsTable;

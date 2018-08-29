@@ -2,9 +2,9 @@ import express from 'express'
 import bodyParser from 'body-parser';
 import logger from "morgan";
 
-import api from './api';
 import "./seeds"
 
+import api from './api';
 
 const app = express();
 

@@ -4,7 +4,7 @@ import db from '../config/db';
  * Creation of Users Table
  */
 
-(async () => {
+const createUsersTable = async () => {
     const client = await db.connect()
     try {
         let query = `CREATE TABLE IF NOT EXISTS users (
@@ -19,4 +19,6 @@ import db from '../config/db';
     } finally {
         client.release()
     }
-})().catch(e => console.log(e.stack))
+}
+
+export default createUsersTable;

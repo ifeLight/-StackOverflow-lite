@@ -1,13 +1,18 @@
-import "./users";
+import createAnswersTable from './answers';
+import createCommentsTable from './comments';
+import createQuestionsTable from './questions';
+import createUsersTable from './users';
+import createVotesTable from './votes';
 
-import "./questions";
-
-import "./answers";
-
-import "./comments";
-
-import "./votes";
-
-/**
- * Files Created here, contains Databease table creations seeds
- */
+(async () => {
+    try {
+        await createUsersTable;
+        await createQuestionsTable;
+        await createAnswersTable;
+        await createCommentsTable;
+        await createVotesTable;
+    } catch (e) {
+        throw e;
+    }
+})()
+.catch((e) => {console.log(e.stack);})
