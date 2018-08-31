@@ -5,6 +5,7 @@ const deleteQuestion = function deleteAQuestionController(req, res) {
   const userId = req.app.get('userId');
 
   const deleteQuery = 'DELETE FROM questions WHERE question_id = $1';
+  const deleteRelatedAnswers = 'DELETE FROM answers WHERE question_id = $1'
   const checkQuery = 'SELECT * FROM questions WHERE question_id = $1';
   (async () => {
     const client = await db.connect();
@@ -22,6 +23,7 @@ const deleteQuestion = function deleteAQuestionController(req, res) {
         });
       }
 
+      await client.query(deleteRelatedAnswers, [questionId])
       await client.query(deleteQuery, [questionId]);
 
       res.status(200).json({
@@ -35,7 +37,7 @@ const deleteQuestion = function deleteAQuestionController(req, res) {
     }
   })()
     .catch((err) => {
-      console.error(err);
+      console.error(err.stack);
       return res.status(500).json({
         message: 'An error encountered on the server',
         success: false,

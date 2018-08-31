@@ -7,7 +7,7 @@ import server from '../server';
 chai.use(chaiHttp)
 should();
 
-describe('Testing V1 API Authentication', () => {
+describe('Testing V1 API', () => {
   let token, questionId, answerId;
   const postQuestionFields = {
     title : "Great Question",
@@ -65,10 +65,38 @@ describe('Testing V1 API Authentication', () => {
               done();
             })
         })
+
+        it('Field(s) cannot be empty', (done) => {
+          chai.request(server)
+            .post('/api/v1/auth/signup')
+            .send({})
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('auth').eq(false);
+              res.body.should.have.property('token').eq(null);
+              res.body.should.have.property('message');
+              done();
+            })
+        })
+
+        it('No duplicate email registration', (done) => {
+          chai.request(server)
+            .post('/api/v1/auth/signup')
+            .send(loginDetails)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('auth').eq(false);
+              res.body.should.have.property('token').eq(null);
+              res.body.should.have.property('message');
+              done();
+            })
+        })
     })
 
     describe('Login /POST', () => {
-      it('It should be ale to login a user and return a token', (done) => {
+      it('It should be able to login a user and return a token', (done) => {
         chai.request(server)
             .post('/api/v1/auth/login')
             .send(loginDetails)
@@ -81,6 +109,55 @@ describe('Testing V1 API Authentication', () => {
               done();
             })
       })
+
+      it('Field(s) cannot be empty', (done) => {
+        chai.request(server)
+          .post('/api/v1/auth/login')
+          .send({})
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('auth').eq(false);
+            res.body.should.have.property('token').eq(null);
+            res.body.should.have.property('message');
+            done();
+          })
+      })
+
+      it('It should not be able to login with an unregistered email', (done) => {
+        chai.request(server)
+            .post('/api/v1/auth/login')
+            .send({
+              email : 'ifeligh@mail.com',
+              password : 'Success101.'
+            })
+            .end((err, res) => {
+              res.should.have.status(401);
+              res.body.should.be.a('object');
+              res.body.should.have.property('auth').eq(false);
+              res.body.should.have.property('token').eq(null);
+              res.body.should.have.property('message');
+              done();
+            })
+      })
+
+      it('It should not be able to login with a wrong password', (done) => {
+        chai.request(server)
+            .post('/api/v1/auth/login')
+            .send({
+              email : 'ifelight@mail.com',
+              password : 'Success1.'
+            })
+            .end((err, res) => {
+              res.should.have.status(401);
+              res.body.should.be.a('object');
+              res.body.should.have.property('auth').eq(false);
+              res.body.should.have.property('token').eq(null);
+              res.body.should.have.property('message');
+              done();
+            })
+      })
+
     })
 
     describe('Add Question /POST', () => {
@@ -102,28 +179,39 @@ describe('Testing V1 API Authentication', () => {
               done();
             })
       })
-    })
 
-    describe('Add Question /POST', () => {
-      it('Should be able to post a question', (done) => {
+      it('Required field(s) to post a question cannot be empty', (done) => {
         //console.log('Token: ', token);
         chai.request(server)
             .post('/api/v1/questions')
             .set('x-access-token', token)
-            .send(postQuestionFields)
+            .send({})
             .end((err, res) => {
-              res.should.have.status(200);
+              res.should.have.status(400);
               res.body.should.be.a('object');
-              res.body.data.should.be.a('object');
-              res.body.data.should.have.property('title');
-              res.body.data.should.have.property('content');
-              res.body.data.should.have.property('createdOn');
-              res.body.data.should.have.property('questionId');
-              questionId = Number(res.body.data.questionId);
+              res.body.should.have.property('success').eq(false);
+              res.body.should.have.property('message');
               done();
             })
       })
+
+      it('To post a question, user must be authenticated', (done) => {
+        //console.log('Token: ', token);
+        chai.request(server)
+            .post('/api/v1/questions')
+            .send(postQuestionFields)
+            .end((err, res) => {
+              res.should.have.status(401);
+              res.body.should.be.a('object');
+              res.body.should.have.property('auth').eq(false);
+              res.body.should.have.property('token').eq(null);
+              res.body.should.have.property('message');
+              done();
+            })
+      })
+
     })
+
 
     describe('GET Questions /GET', () => {
       it('Should be able to retrieve all questions', (done) => {
@@ -160,6 +248,18 @@ describe('Testing V1 API Authentication', () => {
               res.body.data.should.have.property('created_on');
               res.body.data.should.have.property('display_name');
               res.body.should.have.property('message');
+              done();
+            })
+      })
+
+      it('It should not retrieve a question with not specified QuestionID', (done) => {
+        chai.request(server)
+            .get('/api/v1/questions/110001')
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('message');
+              res.body.should.have.property('data').eq(null)
               done();
             })
       })
@@ -212,6 +312,20 @@ describe('Testing V1 API Authentication', () => {
             .send({
               '_method' : 'put'
             })
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.body.should.be.a('object');
+              res.body.should.have.property('message');
+              done();
+            })
+      })
+    })
+
+    describe('DELETE a Question /PUT', () => {
+      it('Should be able delete a question with a questionId', (done) => {
+        chai.request(server)
+            .delete('/api/v1/questions/' + questionId.toString() )
+            .set('x-access-token', token)
             .end((err, res) => {
               res.should.have.status(200);
               res.body.should.be.a('object');

@@ -13,10 +13,10 @@ const isAuthenticated = function (req, res, next) {
     const decoded = jwt.verify(token, config.tokenSecret);
 
     if (!decoded) {
-        if (err) return res.status(500).json({
+        if (err) return res.status(401).json({
             auth: false,
             token : null,
-            error: 'Failed to authenticate token.'
+            message: 'Failed to authenticate token.'
         });
     } else {
         //console.log(decoded);
