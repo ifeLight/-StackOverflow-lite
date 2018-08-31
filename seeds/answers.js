@@ -5,7 +5,7 @@ import db from '../config/db';
  */
 
 const createAnswersTable = async () => {
-    const client = await db.connect()
+    const client = await db.connect();
     try {
         let query = `CREATE TABLE IF NOT EXISTS answers (
             answer_id SERIAL,
@@ -15,9 +15,9 @@ const createAnswersTable = async () => {
             created_on TIMESTAMPTZ DEFAULT NOW (),
             PRIMARY KEY (answer_id)
         );`;
-        await client.query(query)
+        await client.query(query);
     } finally {
-        client.release()
+        client.release();
     }
 }
 

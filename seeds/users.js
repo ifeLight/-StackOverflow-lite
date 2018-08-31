@@ -5,9 +5,9 @@ import db from '../config/db';
  */
 
 const createUsersTable = async () => {
-    const client = await db.connect()
-    try {
-        let query = `CREATE TABLE IF NOT EXISTS users (
+  const client = await db.connect();
+  try {
+    const query = `CREATE TABLE IF NOT EXISTS users (
             user_id SERIAL,
             display_name VARCHAR NOT NULL,
             email VARCHAR NOT NULL,
@@ -15,10 +15,10 @@ const createUsersTable = async () => {
             created_on TIMESTAMPTZ DEFAULT NOW (),
             PRIMARY KEY (user_id, email)
         );`;
-        await client.query(query)
-    } finally {
-        client.release()
-    }
-}
+    await client.query(query);
+  } finally {
+    client.release();
+  }
+};
 
 export default createUsersTable;

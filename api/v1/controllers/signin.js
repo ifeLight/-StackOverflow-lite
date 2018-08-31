@@ -12,7 +12,7 @@ const signin = function signinController(req, res) {
                     res.status(400).json({
                         auth: false,
                         token: null,
-                        error : "Field(s) can not be empty"
+                        message : "Field(s) can not be empty"
                     })
                 } else {
                     const user = await client.query("SELECT * FROM users WHERE email = $1", [email])
@@ -20,19 +20,20 @@ const signin = function signinController(req, res) {
                         res.status(401).json({
                             auth: false,
                             token: null,
-                            error : "Email does not exist"
+                            message : "Email does not exist"
                         })
                     } else {
                         if (!bcrypt.compareSync(password, user.rows[0].password)) {
                             res.status(401).json({
                                 auth: false,
                                 token: null,
-                                error : "Password is not correct"
+                                message : "Password is not correct"
                             })
                         } else {
-                            const token = jwt.sign({id : user.rows[0].id}, config.tokenSecret, {expiresIn: 86400});
+                            const token = jwt.sign({id : user.rows[0].user_id}, config.tokenSecret, {expiresIn: 86400});
                             res.status(200).json({
                                 auth : true,
+                                message : 'Login successfully',
                                 token
                             })
                         }
@@ -49,7 +50,7 @@ const signin = function signinController(req, res) {
             res.status(500).json({
                 auth: false,
                 token: null,
-                error: "The Server encountered a problem"
+                messsage: "The Server encountered a problem"
             });
         })
 }

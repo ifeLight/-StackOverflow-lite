@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import config from "../../../config/default";
 const isAuthenticated = function (req, res, next) {
     const token = req.headers['x-access-token'];
+    //console.log("tok :", token);
     if (!token) return res.status(401).send({
         auth: false,
         token : null,

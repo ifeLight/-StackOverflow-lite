@@ -31,6 +31,7 @@ const postAnswer = function postAnAnswerController (req, res) {
             }
             let insertQuery = `INSERT INTO answers (content, question_id, user_id) VALUES ($1, $2, $3) RETURNING *`;
             const resp = await client.query(insertQuery, [content, questionId, userId]);
+            //console.log(resp.rows[0]);
             res.status(200).json({
                 message : "Answer successfully posted",
                 data : resp.rows[0]

@@ -7,7 +7,7 @@ import db from '../config/db';
 const createCommentsTable = async () => {
     const client = await db.connect()
     try {
-        let query = `CREATE TABLE IF NOT EXISTS answers (
+        let query = `CREATE TABLE IF NOT EXISTS comments (
             comment_id SERIAL,
             answer_id SERIAL NOT NULL REFERENCES answers (answer_id),
             content VARCHAR NOT NULL,

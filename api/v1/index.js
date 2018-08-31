@@ -10,6 +10,7 @@ import getQuestionController from "./controllers/getQuestion";
 import deleteQuestionController from "./controllers/deleteQuestion";
 import postAnswerController from "./controllers/postAnswer";
 import getAnswersController from "./controllers/getAnswers";
+import markAnswerController from './controllers/markAnswer';
 
 import isAuthenticated from "./policies/isAuthenticated";
 
@@ -62,6 +63,6 @@ v1app.post("/questions/:questionId/answers", [isAuthenticated, postAnswerControl
 v1app.get("/questions/:questionId/answers", getAnswersController);
 
 // Mark an answer to a question as Preferred Endpoint
-v1app.put("/questions/:questionId/answers/:answerId", () => {});
+v1app.put("/questions/:questionId/answers/:answerId", markAnswerController);
 
 export default v1app;

@@ -16,20 +16,20 @@ const markAnswer = function markAnswerAsPreferredController (req, res) {
         const client = await db.connect()
         try {
             const isOwner = await client.query("SELECT user_id FROM questions WHERE question_id = $1", [questionId]);
-            if (isOwner.res.length < 1) { 
+            if (isOwner.rows.length < 1) { 
                 return res.status(400).json({
                     message : "Question does not exist"
                 })
             }
             
-            if (isOwner.res[0].user_id != userId) {
+            if (isOwner.rows[0].user_id != userId) {
                 return res.status(403).json({
                     message : "You are forbidden to set this answer as preferred"
                 })
             }
             
             const answerExist = await client.query("SELECT * FROM answers WHERE answer_id = $1 AND question_id = $2", [answerId, questionId]);
-            if (answerExist.res.length < 1) {
+            if (answerExist.rows.length < 1) {
                 return res.status(400).json({
                     message : "The answer does not exist for this question"
                 })

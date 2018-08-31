@@ -39,7 +39,7 @@ const getQuestion = function getQuestionController (req, res) {
         }
     })()
     .catch((err) => {
-        console.error(err);
+        console.error(err.stack);
         return res.status(500).json({
             message: "An error encountered on the server",
             success: false
