@@ -1,7 +1,8 @@
 import { isNumber } from 'util';
 import db from '../../../config/db';
 
-const getAllQuestions = function getAllQuestionsController(req, res) {
+/* eslint-disable */
+const getAllQuestions = function getAllQuestionsController (req, res) {
   /**
      * Accepting Sorting query
      * date : ASC or DESC, page : Number, limit : Number
@@ -18,9 +19,9 @@ const getAllQuestions = function getAllQuestionsController(req, res) {
             ORDER BY`;
 
   if (date && (date == 'ASC' || date == 'DESC')) {
-    query = `${query  } q.created_on ${  date}`;
+    query = `${query } q.created_on ${date}`;
   } else {
-    query += " q.created_on ASC";
+    query += ' q.created_on ASC';
   }
 
   if ((page && isNumber(parseInt(page))) && (limit && isNumber(parseInt(limit)))) {
@@ -44,7 +45,6 @@ const getAllQuestions = function getAllQuestionsController(req, res) {
         count: resp.rowCount,
         data: resp.rows,
       });
-
     } catch (err) {
       throw err;
     } finally {
@@ -58,7 +58,6 @@ const getAllQuestions = function getAllQuestionsController(req, res) {
         success: false,
       });
     });
-
 };
 
 export default getAllQuestions;

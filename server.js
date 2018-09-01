@@ -1,8 +1,8 @@
-import express from 'express'
+import express from 'express';
 import bodyParser from 'body-parser';
-import logger from "morgan";
+import logger from 'morgan';
 
-import "./seeds"
+import './seeds';
 
 import api from './api';
 
@@ -16,21 +16,21 @@ app.use(bodyParser.json());
 app.use(logger('dev'));
 
 
-app.get("/", (req, res) => {
-    res.send("Page working yes")
-})
+app.get('/', (req, res) => {
+  res.send('Page working yes');
+});
 
 
 /**
  * Api Routers
  */
-app.use("/api", api)
+app.use('/api', api);
 
 /**
  * 404 page
  */
 app.use((req, res) => {
-    res.status(404).send("Page not found");
-})
+  res.status(404).send('Page not found');
+});
 
 export default app;

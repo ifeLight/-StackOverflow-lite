@@ -5,19 +5,19 @@ import db from '../config/db';
  */
 
 const createCommentsTable = async () => {
-    const client = await db.connect()
-    try {
-        let query = `CREATE TABLE IF NOT EXISTS comments (
+  const client = await db.connect();
+  try {
+    const query = `CREATE TABLE IF NOT EXISTS comments (
             comment_id SERIAL,
             answer_id SERIAL NOT NULL REFERENCES answers (answer_id),
             content VARCHAR NOT NULL,
             created_on TIMESTAMPTZ DEFAULT NOW (),
             PRIMARY KEY (comment_id)
         );`;
-        await client.query(query)
-    } finally {
-        client.release()
-    }
-}
+    await client.query(query);
+  } finally {
+    client.release();
+  }
+};
 
 export default createCommentsTable;

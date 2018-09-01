@@ -5,9 +5,11 @@ const deleteQuestion = function deleteAQuestionController(req, res) {
   const userId = req.app.get('userId');
 
   const deleteQuery = 'DELETE FROM questions WHERE question_id = $1';
-  const deleteRelatedAnswers = 'DELETE FROM answers WHERE question_id = $1'
+  const deleteRelatedAnswers = 'DELETE FROM answers WHERE question_id = $1';
   const checkQuery = 'SELECT * FROM questions WHERE question_id = $1';
-  (async () => {
+
+  /* eslint-disable-next-line */
+(async () => {
     const client = await db.connect();
     try {
       const checkResponse = await client.query(checkQuery, [questionId]);
@@ -17,19 +19,18 @@ const deleteQuestion = function deleteAQuestionController(req, res) {
         });
       }
 
-      if (checkResponse.rows[0].user_id != userId) {
+      if (checkResponse.rows[0].user_id !== userId) {
         return res.status(403).json({
           message: 'This user is not permitted to delete this message',
         });
       }
 
-      await client.query(deleteRelatedAnswers, [questionId])
+      await client.query(deleteRelatedAnswers, [questionId]);
       await client.query(deleteQuery, [questionId]);
 
       res.status(200).json({
         message: 'Question deleted successfully',
       });
-
     } catch (err) {
       throw err;
     } finally {

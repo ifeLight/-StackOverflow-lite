@@ -1,5 +1,5 @@
-const signout = function signoutController (req, res) {
-    
-}
+const signout = function signoutController() {
+
+};
 
 export default signout;
