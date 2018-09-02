@@ -1,6 +1,11 @@
 language: node_js
 node_js:
-  - "latest"
+- latest
 cache:
   directories:
-    - "node_modules"
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: ckkkNqlw5yHSuTI3njDDb//hWSu9C+A0yQrWmYcVZVs2dVRi4hEYZI3XiS+vauagnMWhsnDO3yiR16QVSlA4WdtF0WrbUwfn+RxRd2IQAg+Ph2JKZwb/yTBXL7ELD+FyO73xXlZvAf0DZoXQw6V6QbMwO5sGRLYiBElTLPrdw1vmg+BTy46GpqBVxwC5l1PT5AxHJukBoJifAi5zjr9URtIe4jO6VbAj7C//dhBhVi6opnHR7GxzpCAt/KHX2XiJ1Lc0nZ4zQKD4Rfx+8mrnhNNEioKeGkbhDG7C1BhGk+DSl0YhZvip/Lv/pnLYHcw938ZteKcNF3HBY7rFNZtN/EgfKy4qC80f5eNFn2PZeriQBAfn6leh/380C3h5ibfDblJalgwKs4v1jclBuk98tETt7pM4lo6gyzGdSuWr9tS5zNA9gJOxKhMj2puxRQcbljU7xPRHUHKgd2a6PRpxjTIZj0M6gBQiPJkLOT2BvPxHphKjLDfYaAxrbkbFg1S1ov9pX6v8bu3YMYUFkrSK/eTOhxtaLiQlTwticmqZpnO8NLA5J721JoSX2u5Vj7h5bxoNgx17rZ2iILh4CpO0qX8vvzCXpkswEbF0ZO2YzngXijlQ0lHJas6FuY1rAdvC7Rt0vGulbHfLH+b5hvS6riBq/z37qtI1DOtiqqFpk7k=
+  app: ifestack
