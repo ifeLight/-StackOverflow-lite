@@ -15,6 +15,8 @@ const createCommentsTable = async () => {
             PRIMARY KEY (comment_id)
         );`;
     await client.query(query);
+  } catch (e) {
+    throw e;
   } finally {
     client.release();
   }

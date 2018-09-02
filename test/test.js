@@ -2,6 +2,7 @@ import chai, { should } from 'chai';
 import chaiHttp from 'chai-http';
 
 import db from '../config/db';
+import createTables from '../seeds/index';
 import server from '../server';
 
 chai.use(chaiHttp);
@@ -26,8 +27,9 @@ describe('Testing V1 API', () => {
   before('Cleaning Up Users in the Database', async () => {
     const client = await db.connect();
     try {
+      await createTables();
       await client.query('DELETE FROM votes;');
-      // await client.query('DELETE FROM comments;');
+      await client.query('DELETE FROM comments;');
       await client.query('DELETE FROM answers;');
       await client.query('DELETE FROM questions;');
       await client.query('DELETE FROM users;');

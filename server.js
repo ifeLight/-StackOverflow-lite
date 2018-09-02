@@ -2,9 +2,18 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 
-import './seeds';
-
+import createTables from './seeds/index';
 import api from './api';
+
+// Database Tables Creation
+(async () => {
+  try {
+    await createTables();
+  } catch (e) {
+    throw e;
+  }
+})()
+  .catch((err) => { console.log(err.stack); });
 
 const app = express();
 

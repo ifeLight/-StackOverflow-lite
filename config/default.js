@@ -1,9 +1,9 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const defaultConfig = {
-    tokenSecret : process.env.TOKEN_SECRET || "dhkmsgseieYhb79Nj"
-}
+  tokenSecret: process.env.TOKEN_SECRET || 'dhkmsgseieYhb79Nj',
+};
 
 export default defaultConfig;

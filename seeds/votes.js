@@ -16,6 +16,8 @@ const createVotesTable = async () => {
             PRIMARY KEY (vote_id)
         );`;
     await client.query(query);
+  } catch (e) {
+    throw e;
   } finally {
     client.release();
   }
