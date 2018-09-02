@@ -7,7 +7,7 @@ dotenv.config();
  * Database Connection String
  * Example : postgresql://username:password@server:port/databaseName
  */
-const connectionString = process.env.DATABASE_URL || 'postgresql://stack:stack@localhost:5432/stack';
+const connectionString = process.env.DATABASE_URL || 'postgres://mdhiagiz:LwMBraBjyZWw87qf2YI1KVIj1bsqRQK6@pellefant.db.elephantsql.com:5432/mdhiagiz';
 
 const pool = new Pool({
   connectionString,
