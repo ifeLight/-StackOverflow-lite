@@ -1,4 +1,5 @@
-import mod from './mod';
+import LoginAction from './services/login';
 
-console.log(mod.great);
-console.log("watching");
+const loginButton = document.getElementById("loginActionButton");
+
+loginButton.addEventListener("click", LoginAction);
