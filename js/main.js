@@ -7,6 +7,7 @@ import askQuestion from './services/askQuestion';
 import questionListAction from './services/questionList';
 import loadQuestion from './services/loadQuestion';
 import loadAnswers from './services/loadAnswers';
+import postAnswer from './services/postAnswer';
 
 const loginButton = document.getElementById("loginActionButton");
 if (loginButton) {
@@ -48,5 +49,6 @@ const questionPage = document.getElementById('questionPage');
 if (questionPage) {
     loadQuestion();
     loadAnswers();
+    document.getElementById("answerButton").addEventListener("click", postAnswer);
 }
 

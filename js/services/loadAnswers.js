@@ -11,7 +11,7 @@ const loadAnswers = () => {
     loader.show();
     let responseOk = true;
 
-    fetch(`${apiUrl}questions/${questionId}/answers`)
+    fetch(`${apiUrl}questions/${questionId}/answers?date=DESC`)
     .then((response) => {
         loader.hide();
         if (!response.ok) {
