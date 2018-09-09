@@ -2,7 +2,7 @@ import isLoggedIn from '../functions/isLoggedIn';
 
 const navbarHandler = () => {
     const topnav = document.getElementById("topnav");
-    const topContent = `<li><a>StackOverflow Lite</a></li>`;
+    const topContent = `<li><a href="/">StackOverflow Lite</a></li>`;
     const bottomContent = ``;
     let mainContent;
     if(!isLoggedIn()) {

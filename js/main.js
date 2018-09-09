@@ -2,6 +2,8 @@ import loginAction from './services/login';
 import signupAction from './services/signup';
 import navbarHandler from './services/navbar';
 import signout from './services/signout';
+import needLogin from './functions/needLogin';
+import askQuestion from './services/askQuestion';
 
 const loginButton = document.getElementById("loginActionButton");
 if (loginButton) {
@@ -21,6 +23,16 @@ if(topnav) {
 const logoutButton = document.getElementById('logout');
 if(logoutButton) {
     logoutButton.addEventListener('click', signout);
+}
+
+const askPage = document.getElementById('askPage');
+if (askPage) {
+    needLogin();
+}
+
+const askButton = document.getElementById('askButton');
+if (askButton) {
+    askButton.addEventListener("click", askQuestion);
 }
 
 
