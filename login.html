@@ -11,11 +11,22 @@
 </head>
 
 <body>
-    <form method="post" >
+
+    <div id="overlay"></div>
+    <div id="alertbox">
+        <div>
+            <div id="alertheader"></div>
+            <div id="alertbody"></div>
+            <div id="alertfooter"></div>
+        </div>
+    </div>
+
+    <form method="post">
         <div class="box">
             <h1>Login</h1>
+            <div class="loader" id="loader"></div>
 
-            <input type="email" name="email" placeholder="Email"  class="email" />
+            <input type="email" name="email" placeholder="Email" class="email" />
 
             <input type="password" name="password" placeholder="Password" class="email" />
 

@@ -107,3 +107,82 @@ form {
 u {
     color: #f1c40f;
 }
+
+.margined {
+    margin : 20px;
+}
+
+ul.pagination-container {
+    display: inline;
+}
+
+
+/** Loader Section **/
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin-left: 100px;
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/** Custom Alert Boxes Section **/
+#overlay{
+    display: none;
+    opacity: 0.7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    z-index: 10;
+  }
+  #alertbox{
+    display: none; 
+    position: fixed;
+    background: #2980b9;
+    border-radius: 3px;
+    width: 250px;
+    z-index: 10;
+  }
+  #alertbox > div{
+    margin:3px;
+    background: #FFF;
+  }
+  #alertbox > div > #alertheader{
+    background: #FFF;
+    padding: 10px;
+  }
+  #alertbox > div > #alertbody{
+    background: #FFF;
+    padding: 20px;
+    color: #333;
+    
+  }
+  #alertbox > div > #alertfooter{
+    background: #FFF;
+    padding: 20px;
+    text-align: right;
+  }
+
+  #alertbox #stopAlert{
+    background: #2980b9;
+    width: 125px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 4px;
+    border: #2980b9 1px solid;
+    font-weight: 800;
+    font-size: 0.8em;
+  }
+

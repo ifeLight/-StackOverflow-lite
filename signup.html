@@ -11,19 +11,28 @@
 </head>
 
 <body>
+    <div id="overlay"></div>
+    <div id="alertbox">
+        <div>
+            <div id="alertheader"></div>
+            <div id="alertbody"></div>
+            <div id="alertfooter"></div>
+        </div>
+    </div>
     <form method="post">
         <div class="box">
+
             <h1>Signup</h1>
+            <div class="loader" id="loader"></div>
+            <input type="email" name="email" id="email" placeholder="Your Email" class="email" />
 
-            <input type="email" name="email" placeholder="Your Email" class="email" />
+            <input type="text" name="displayName" id="password" placeholder="Your Display Name" class="email" />
 
-            <input type="text" name="displayName" placeholder="Your Display Name" class="email" />
+            <input type="password" name="password" id="password" placeholder="Choose a password" class="email" />
 
-            <input type="password" name="password" placeholder="Choose a password" class="email" />
+            <input type="password" name="confirm-password" id="confirm-password" placeholder="Re-enter Password" class="email" />
 
-            <input type="password" name="confirm-password" placeholder="Re-enter Password" class="email" />
-
-            <a href="#">
+            <a href="#" id="signupButtonAction">
                 <div id="btn2">Sign Up</div>
             </a> <!-- End Btn2 -->
 
