@@ -7,92 +7,72 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>StackOverflow Lite</title>
     <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css//questions-list.css">
+    <link rel="stylesheet" href="./css//question.css">
     <link rel="stylesheet" href="./css//main.css">
 </head>
 
-<body>
+<body id="questionPage">
     <div>
-        <ul class="topnav">
+        <ul class="topnav" id="topnav">
             <li><a>StackOverflow Lite</a></li>
-            <li class="right"><a class="active" href="#home">Logout</a></li>
-            <li class="right"><a href="#news">Profile</a></li>
-            <li class="right"><a href="#contact">Contact</a></li>
-            <li class="right"><a href="#about">Ask a Question</a></li>
+            <li class="right"><a class="active" href="/login.html">Sign In</a></li>
+            <li class="right"><a href="/signup.html">Signup</a></li>
+            <li class="right"><a href="/ask.html">Ask a Question</a></li>
         </ul>
     </div>
-
-    <div>
-        <h2 class="margined">Question </h2>
+    <div id="overlay"></div>
+    <div id="alertbox">
+        <div>
+            <div id="alertheader"></div>
+            <div id="alertbody"></div>
+            <div id="alertfooter"></div>
+        </div>
     </div>
 
-    <div id="question">
-        <div class="card">
-            <div class="container">
-                <h1><b>John Doe</b></h1>
-                <h5>The question of the content heree</h5>
-                <p>Time and date stuff</p>
-            </div>
+    <div class="box maintain-height">
+        <div>
+            <h2 class="margined"> Question </h2>
+        </div>
+        <div class="loader" id="loader"></div>
+
+        <div id="question">
+            <h3> Stop Bad Coding skills</h3>
+            <small>By: On: september</small>
+            <p>Ko le work ooooo</p>
+        </div>
+    </div>
+
+    <div class="box">
+        <div>
+            <h2 class="margined"> Post an Answer </h2>
         </div>
 
+        <div id="answer-form">
+                <textarea name="content" id="content" placeholder="Write your answers in full" class="email" cols="30"
+                    rows="10"></textarea>
+
+                <a id="answerButton" href="#">
+                    <div class="btn">Submit Answer</div>
+                </a>
+        </div>
     </div>
 
-    <div class="margined">
-        <h2 class="margined">Submit an Answer </h2>
-    </div>
-
-
-
-    <div id="create-answer">
-        <div class="card">
-            <div class="container">
-                <h1><b>John Doe</b></h1>
-                <h5>The question of the content heree</h5>
-                <p>Time and date stuff</p>
-            </div>
+    <div id="answer-box" class="box">
+        <div>
+            <h2 class="margined"> Answers </h2>
         </div>
 
-    </div>
-
-    <div class="margined">
-        <h2 class="margined">Answers </h2>
-    </div>
-
-
-
-    <div id="answers-list">
-        <div class="card">
-            <div class="container">
-                <h1><b>John Doe</b></h1>
-                <h5>The question of the content heree</h5>
-                <p>Time and date stuff</p>
+        <div id="answer-list">
+            <div class="card">
+                <div class="container">
+                    <h4><b>John Doe</b></h4>
+                    <p>By: Johnah On: 30th May, 2018</p>
+                </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="container">
-                <h1><b>John Doe</b></h1>
-                <h5>The question of the content heree</h5>
-                <p>Time and date stuff</p>
-            </div>
         </div>
-
-        <div class="card">
-            <div class="container">
-                <h1><b>John Doe</b></h1>
-                <h5>The question of the content heree</h5>
-                <p>Time and date stuff</p>
-            </div>
-        </div>
-
     </div>
 
-    <div id="pagination">
-        <ul class="topnav">
-            <li><a>Prev</a></li>
-            <li class="right"><a href="#">Next</a></li>
-        </ul>
-    </div>
 
     <div id="footer">
         <p>All Right Reserved</p>
