@@ -1,6 +1,6 @@
 const redirect = (path) => {
     const hostname = window.location.hostname;
-    window.location.href = `${hostname}/${path}`;
+    window.location.href = `${path}`;
 }
 
 export default redirect;

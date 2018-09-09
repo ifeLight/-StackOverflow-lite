@@ -5,7 +5,7 @@ const navbarHandler = () => {
     const topContent = `<li><a>StackOverflow Lite</a></li>`;
     const bottomContent = ``;
     let mainContent;
-    if(isLoggedIn) {
+    if(!isLoggedIn()) {
         mainContent = `<li class="right"><a class="active" href="/login.html">Sign In</a></li>
         <li class="right"><a href="/signup.html">Signup</a></li>
         <li class="right"><a href="/ask.html">Ask a Question</a></li>`;
