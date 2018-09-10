@@ -79,6 +79,16 @@ h1 {
     margin-left : 30px;
 }
 
+#content {
+    display: block;
+    margin : 10px auto 10px auto;
+}
+
+#answerButton {
+    display: block;
+    margin-left: 50px;
+}
+
 #question p {
     font-weight: 400;
     font-size: 1em;
