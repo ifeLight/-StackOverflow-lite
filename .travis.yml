@@ -12,4 +12,5 @@ deploy:
 install:
   - npm install
 script:
+  -npm run build
   - npm test
