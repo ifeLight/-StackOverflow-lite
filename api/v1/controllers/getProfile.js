@@ -1,6 +1,7 @@
 
 import db from '../../../config/db';
 
+/* eslint-disable-next-line */
 const getProfile = (req, res) => {
   const userId = req.app.get('userId');
   if (!userId) {
