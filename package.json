@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "the ui of stackoverflow lite",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.16.3"
+  },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
@@ -32,7 +34,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
-    "start": "http-server",
+    "start": "node index.js",
     "webpack": "webpack"
   },
   "author": "Ifedayo Karim",
