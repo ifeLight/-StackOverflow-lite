@@ -4,10 +4,10 @@
   "description": "A Stackoverflow mini app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon lib/index.js --exec babel-node",
+    "start": "NODE_ENV=production nodemon lib/index.js --exec babel-node",
     "build": "babel lib -d dist",
     "serve": "node dist/index.js",
-    "test": "mocha --compilers js:babel-register --timeout 30000"
+    "test": "NODE_ENV=test mocha --compilers js:babel-register --timeout 30000"
   },
   "repository": {
     "type": "git",
