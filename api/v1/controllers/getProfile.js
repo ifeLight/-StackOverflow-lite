@@ -12,7 +12,6 @@ const getProfile = (req, res) => {
     });
   }
   (async () => {
-    const client = await db.connect();
     try {
       const countAnswersQuery = 'SELECT COUNT(*) FROM answers WHERE user_id = $1';
       const countQuestionsQuery = 'SELECT COUNT(*) FROM questions WHERE user_id = $1';
@@ -30,10 +29,10 @@ const getProfile = (req, res) => {
           WHERE q.user_id = $1
           ORDER BY no_answers DESC
           LIMIT 10`;
-      const respAnswersNo = await client.query(countAnswersQuery, [userId]);
-      const respQuestionsNo = await client.query(countQuestionsQuery, [userId]);
-      const respRecentQuestions = await client.query(recentQuestionsByUserQuery, [userId]);
-      const respPopularQuestions = await client.query(popularQuestionsByUserQuery, [userId]);
+      const respAnswersNo = await db.query(countAnswersQuery, [userId]);
+      const respQuestionsNo = await db.query(countQuestionsQuery, [userId]);
+      const respRecentQuestions = await db.query(recentQuestionsByUserQuery, [userId]);
+      const respPopularQuestions = await db.query(popularQuestionsByUserQuery, [userId]);
       res.status(200).json({
         message: 'Profile fully loaded',
         data: {
@@ -45,8 +44,6 @@ const getProfile = (req, res) => {
       });
     } catch (err) {
       throw err;
-    } finally {
-      client.release();
     }
   })()
     .catch((err) => {

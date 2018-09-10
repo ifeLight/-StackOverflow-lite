@@ -34,10 +34,9 @@ const getAllQuestions = function getAllQuestionsController (req, res) {
   }
 
   (async () => {
-    const client = await db.connect();
     try {
-      // console.log(query);
-      const resp = await client.query(query);
+      //console.log(query);
+      const resp = await db.query(query);
       res.status(200).json({
         page,
         limit,
@@ -48,7 +47,6 @@ const getAllQuestions = function getAllQuestionsController (req, res) {
     } catch (err) {
       throw err;
     } finally {
-      client.release();
     }
   })()
     .catch((err) => {

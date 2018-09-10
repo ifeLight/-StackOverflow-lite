@@ -6,7 +6,6 @@ import config from '../../../config/default';
 const signin = function signinController(req, res) {
   const { email, password } = req.body;
   (async () => {
-    const client = await db.connect();
     try {
       if (!email || !password) {
         res.status(400).json({
@@ -15,7 +14,7 @@ const signin = function signinController(req, res) {
           message: 'Field(s) can not be empty',
         });
       } else {
-        const user = await client.query('SELECT * FROM users WHERE email = $1', [email]);
+        const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
         if (user.rows.length < 1) {
           res.status(401).json({
             auth: false,
@@ -40,8 +39,6 @@ const signin = function signinController(req, res) {
       }
     } catch (e) {
       throw e;
-    } finally {
-      client.release();
     }
   })()
     .catch((err) => {

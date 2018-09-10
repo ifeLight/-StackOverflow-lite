@@ -21,10 +21,9 @@ const postQuestion = function postAQuestionController(req, res) {
   }
 
   (async () => {
-    const client = await db.connect();
     try {
       const query = 'INSERT INTO questions (title, content, user_id) VALUES ($1, $2, $3) RETURNING question_id';
-      const resp = await client.query(query, [title, content, userId]);
+      const resp = await db.query(query, [title, content, userId]);
       res.status(200).json({
         message: 'Question successfully uploaded',
         data: {
@@ -36,8 +35,6 @@ const postQuestion = function postAQuestionController(req, res) {
       });
     } catch (err) {
       throw err;
-    } finally {
-      client.release();
     }
   })()
     .catch((err) => {

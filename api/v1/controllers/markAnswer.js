@@ -15,9 +15,8 @@ const markAnswer = function markAnswerAsPreferredController(req, res) {
 
   /* eslint-disable-next-line */
   (async () => {
-    const client = await db.connect();
     try {
-      const isOwner = await client.query('SELECT user_id FROM questions WHERE question_id = $1', [questionId]);
+      const isOwner = await db.query('SELECT user_id FROM questions WHERE question_id = $1', [questionId]);
       if (isOwner.rows.length < 1) {
         return res.status(400).json({
           message: 'Question does not exist',
@@ -30,21 +29,19 @@ const markAnswer = function markAnswerAsPreferredController(req, res) {
         });
       }
 
-      const answerExist = await client.query('SELECT * FROM answers WHERE answer_id = $1 AND question_id = $2', [answerId, questionId]);
+      const answerExist = await db.query('SELECT * FROM answers WHERE answer_id = $1 AND question_id = $2', [answerId, questionId]);
       if (answerExist.rows.length < 1) {
         return res.status(400).json({
           message: 'The answer does not exist for this question',
         });
       }
 
-      await client.query('UPDATE questions SET preferred_answer = $1 WHERE question_id = $2', [answerId, questionId]);
+      await db.query('UPDATE questions SET preferred_answer = $1 WHERE question_id = $2', [answerId, questionId]);
       res.status(200).json({
         message: 'Successfully set as preferred',
       });
     } catch (err) {
       throw err;
-    } finally {
-      client.release();
     }
   })()
     .catch((err) => {

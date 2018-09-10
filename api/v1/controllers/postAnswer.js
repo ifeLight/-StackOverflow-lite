@@ -23,17 +23,16 @@ const postAnswer = function postAnAnswerController(req, res) {
 
   /* eslint-disable-next-line */
   (async () => {
-    const client = await db.connect();
     try {
       const checkQuery = 'SELECT * FROM questions WHERE question_id = $1';
-      const checkResponse = await client.query(checkQuery, [questionId]);
+      const checkResponse = await db.query(checkQuery, [questionId]);
       if (checkResponse.rows.length < 1) {
         return res.status(400).json({
           message: 'This question does not exist anymore',
         });
       }
       const insertQuery = 'INSERT INTO answers (content, question_id, user_id) VALUES ($1, $2, $3) RETURNING *';
-      const resp = await client.query(insertQuery, [content, questionId, userId]);
+      const resp = await db.query(insertQuery, [content, questionId, userId]);
       // console.log(resp.rows[0]);
       res.status(200).json({
         message: 'Answer successfully posted',
@@ -41,8 +40,6 @@ const postAnswer = function postAnAnswerController(req, res) {
       });
     } catch (err) {
       throw err;
-    } finally {
-      client.release();
     }
   })()
     .catch((err) => {

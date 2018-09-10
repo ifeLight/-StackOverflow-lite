@@ -38,16 +38,15 @@ const getAnswer =  function getAnswerController(req, res) {
   }
 
   (async () => {
-    const client = await db.connect();
     try {
       const checkQuery = 'SELECT * FROM questions WHERE question_id = $1';
-      const checkResponse = await client.query(checkQuery, [questionId]);
+      const checkResponse = await db.query(checkQuery, [questionId]);
       if (checkResponse.rows.length < 1) {
         return res.status(400).json({
           message: 'This question does not exist anymore',
         });
       }
-      const answerResponse = await client.query(answerQuery, [questionId]);
+      const answerResponse = await db.query(answerQuery, [questionId]);
 
       return res.status(200).json({
         page,
@@ -58,8 +57,6 @@ const getAnswer =  function getAnswerController(req, res) {
       });
     } catch (err) {
       throw err;
-    } finally {
-      client.release();
     }
   })()
     .catch((err) => {

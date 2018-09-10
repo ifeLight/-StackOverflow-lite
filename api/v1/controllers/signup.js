@@ -16,12 +16,11 @@ const signup = function signupController(req, res) {
   } else {
     /* eslint-disable-next-line */
     (async () => {
-      const client = await db.connect();
       try {
         const genSalt = bcrypt.genSaltSync(8);
         const hashedPassword = bcrypt.hashSync(password, genSalt);
 
-        const userExist = await client.query('SELECT * FROM users WHERE email = $1', [email]);
+        const userExist = await db.query('SELECT * FROM users WHERE email = $1', [email]);
 
         if (userExist.rowCount > 0) {
           return res.status(400).json({
@@ -32,7 +31,7 @@ const signup = function signupController(req, res) {
         }
 
         const query = 'INSERT INTO users (email, password, display_name) VALUES ($1, $2, $3) RETURNING user_id';
-        const resp = await client.query(query, [email, hashedPassword, displayName]);
+        const resp = await db.query(query, [email, hashedPassword, displayName]);
         // console.log(resp.rows[0]);
         const userId = resp.rows[0].user_id;
         const token = jwt.sign({ id: userId }, config.tokenSecret, { expiresIn: 86400 });
@@ -44,8 +43,6 @@ const signup = function signupController(req, res) {
         });
       } catch (err) {
         throw err;
-      } finally {
-        client.release();
       }
     })()
       .catch((e) => {

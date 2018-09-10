@@ -10,9 +10,8 @@ const deleteQuestion = function deleteAQuestionController(req, res) {
 
   /* eslint-disable-next-line */
 (async () => {
-    const client = await db.connect();
     try {
-      const checkResponse = await client.query(checkQuery, [questionId]);
+      const checkResponse = await db.query(checkQuery, [questionId]);
       if (checkResponse.rows.length < 1) {
         return res.status(400).json({
           message: 'The question with such ID does not exist',
@@ -25,16 +24,14 @@ const deleteQuestion = function deleteAQuestionController(req, res) {
         });
       }
 
-      await client.query(deleteRelatedAnswers, [questionId]);
-      await client.query(deleteQuery, [questionId]);
+      await db.query(deleteRelatedAnswers, [questionId]);
+      await db.query(deleteQuery, [questionId]);
 
       res.status(200).json({
         message: 'Question deleted successfully',
       });
     } catch (err) {
       throw err;
-    } finally {
-      client.release();
     }
   })()
     .catch((err) => {

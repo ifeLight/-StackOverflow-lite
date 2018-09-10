@@ -18,6 +18,7 @@ const pool = new Pool({
  */
 pool.on('error', (err) => {
   console.error('Unexpected error on idle client', err.stack);
+  pool.end();
   process.exit(-1);
 });
 
@@ -25,7 +26,7 @@ pool.on('error', (err) => {
  * When the Database is connected
  */
 pool.on('connect', () => {
-  console.error('PostgreSQL Database Connected');
+  console.log('PostgreSQL Database Connected');
 });
 /**
  * Before Application Closes, database has to shut down

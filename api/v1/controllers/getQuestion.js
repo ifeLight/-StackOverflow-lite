@@ -11,16 +11,15 @@ const getQuestion = function getQuestionController(req, res) {
             LIMIT 1`;
 
   (async () => {
-    const client = await db.connect();
     try {
-      const questionResponse = await client.query(questionQuery, [questionId]);
+      const questionResponse = await db.query(questionQuery, [questionId]);
       let data = { ...questionResponse.rows[0] };
 
       if (questionResponse.rows.length > 0) {
         const prefAnswer = questionResponse.rows[0].preferred_answer;
         if (prefAnswer !== null || prefAnswer !== undefined) {
           const preferredAnswerQuery = 'SELECT * FROM answers WHERE answer_id  = $1';
-          const preferredAnswer = await client.query(preferredAnswerQuery, [prefAnswer]);
+          const preferredAnswer = await db.query(preferredAnswerQuery, [prefAnswer]);
           data = { ...data, preferred_answer: preferredAnswer.rows[0] };
         }
         res.status(200).json({
@@ -35,8 +34,6 @@ const getQuestion = function getQuestionController(req, res) {
       }
     } catch (err) {
       throw err;
-    } finally {
-      client.release();
     }
   })()
     .catch((err) => {
