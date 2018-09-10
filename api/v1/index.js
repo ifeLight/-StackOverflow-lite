@@ -11,6 +11,7 @@ import deleteQuestionController from './controllers/deleteQuestion';
 import postAnswerController from './controllers/postAnswer';
 import getAnswersController from './controllers/getAnswers';
 import markAnswerController from './controllers/markAnswer';
+import getProfileController from './controllers/getProfile';
 
 import isAuthenticated from './policies/isAuthenticated';
 
@@ -64,5 +65,8 @@ v1app.get('/questions/:questionId/answers', getAnswersController);
 
 // Mark an answer to a question as Preferred Endpoint
 v1app.put('/questions/:questionId/answers/:answerId', markAnswerController);
+
+// Get user profile
+v1app.get('/profile', [isAuthenticated, getProfileController]);
 
 export default v1app;

@@ -4,8 +4,8 @@ import db from '../../../config/db';
 import config from '../../../config/default';
 
 const signup = function signupController(req, res) {
+  console.log(req.body);
   const { email, password, displayName } = req.body;
-
   if (!email || !password || !displayName) {
     // Validation
     res.status(400).json({
