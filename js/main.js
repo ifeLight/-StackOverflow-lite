@@ -8,6 +8,7 @@ import questionListAction from './services/questionList';
 import loadQuestion from './services/loadQuestion';
 import loadAnswers from './services/loadAnswers';
 import postAnswer from './services/postAnswer';
+import getProfile from './services/getProfile';
 
 const loginButton = document.getElementById("loginActionButton");
 if (loginButton) {
@@ -52,3 +53,8 @@ if (questionPage) {
     document.getElementById("answerButton").addEventListener("click", postAnswer);
 }
 
+const profilePage = document.getElementById('profilePage');
+if (profilePage) {
+    needLogin();
+    getProfile();
+}

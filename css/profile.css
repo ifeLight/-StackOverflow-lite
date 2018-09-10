@@ -1,0 +1,254 @@
+body {
+    background: #f1f1f1;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin: 10px;
+    background-color : white;
+    text-align : left;
+    color : rgba(0,0,0,0.9)
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card a {
+    text-decoration: none;
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+}
+
+#questions-list {
+    margin: 20px;
+}
+
+/** Picked from ask.css **/
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #3498db;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+html {
+    display: table;
+}
+
+body,
+html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-size: 12px;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: #525252;
+}
+
+.box {
+    background: white;
+    border-radius: 6px;
+    margin: 25px auto 25px auto;
+    padding: 0px 0px 70px 0px;
+    border: #2980b9 4px solid;
+    min-height: 40px;
+    width: 80%;
+}
+
+.maintain-height {
+    min-height: 40px;
+}
+
+#question {
+    text-align: left;
+    margin-left : 30px;
+}
+
+#question p {
+    font-weight: 400;
+    font-size: 1em;
+}
+
+#question h3 {
+    padding-bottom: 2px;
+    margin-bottom : 0px;
+}
+
+#question small {
+    padding-top: 2px;
+    margin-top: 0px;
+}
+
+#answer-box {
+    min-height: 40px;
+}
+
+form {
+    display:table;/* shrinks to fit conntent */
+    margin:auto;
+    margin-top: 20px;
+}
+
+.email {
+    background: #ecf0f1;
+    border: #ccc 1px solid;
+    border-bottom: #ccc 2px solid;
+    padding: 8px;
+    width: 80%;
+    color: #AAAAAA;
+    margin-top: 10px;
+    font-size: 1em;
+    border-radius: 4px;
+}
+
+.password {
+    border-radius: 4px;
+    background: #ecf0f1;
+    border: #ccc 1px solid;
+    padding: 8px;
+    width: 80%;
+    font-size: 1em;
+}
+
+.btn {
+    background: #2ecc71;
+    width: 125px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 4px;
+    border: #27ae60 1px solid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: left;
+    margin-left: 50px;
+    font-weight: 800;
+    font-size: 0.8em;
+}
+
+.btn:hover {
+    background: #2CC06B;
+}
+
+#btn2 {
+    float: left;
+    background: #3498db;
+    width: 125px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 4px;
+    border: #2980b9 1px solid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    font-weight: 800;
+    font-size: 0.8em;
+}
+
+#btn2:hover {
+    background: #3594D2;
+}
+
+.margined {
+    margin : 20px;
+}
+
+ul.pagination-container {
+    display: inline;
+}
+
+
+/** Loader Section **/
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin-left: 100px;
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/** Custom Alert Boxes Section **/
+#overlay{
+    display: none;
+    opacity: 0.7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    z-index: 10;
+  }
+  #alertbox{
+    display: none; 
+    position: fixed;
+    background: #2980b9;
+    border-radius: 3px;
+    width: 250px;
+    z-index: 10;
+  }
+  #alertbox > div{
+    margin:3px;
+    background: #FFF;
+  }
+  #alertbox > div > #alertheader{
+    background: #FFF;
+    padding: 10px;
+  }
+  #alertbox > div > #alertbody{
+    background: #FFF;
+    padding: 20px;
+    color: #333;
+    
+  }
+  #alertbox > div > #alertfooter{
+    background: #FFF;
+    padding: 20px;
+    text-align: right;
+  }
+
+  #alertbox #stopAlert{
+    background: #2980b9;
+    width: 125px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 4px;
+    border: #2980b9 1px solid;
+    font-weight: 800;
+    font-size: 0.8em;
+  }
+
+/**/
+ul.topnav {
+    margin: 0;
+}
+
+/** Footer */
+#footer > p {
+    color: white
+}

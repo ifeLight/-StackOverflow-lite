@@ -7,63 +7,72 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>StackOverflow Lite</title>
     <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css//questions-list.css">
+    <link rel="stylesheet" href="./css/profile.css">
     <link rel="stylesheet" href="./css//main.css">
 </head>
 
-<body>
+<body id="profilePage">
     <div>
-        <ul class="topnav">
+        <ul class="topnav" id="topnav">
             <li><a>StackOverflow Lite</a></li>
-            <li class="right"><a class="active" href="#home">Logout</a></li>
-            <li class="right"><a href="#news">Profile</a></li>
-            <li class="right"><a href="#contact">Contact</a></li>
-            <li class="right"><a href="#about">Ask a Question</a></li>
+            <li class="right"><a class="active" href="/login.html">Sign In</a></li>
+            <li class="right"><a href="/signup.html">Signup</a></li>
+            <li class="right"><a href="/ask.html">Ask a Question</a></li>
         </ul>
     </div>
-
-    <div> <h2 class="margined">Recent Questions </h2> </div>
-
-    <div id="questions-list">
-
-        <div class="card">
-            <div class="container">
-                <h4><b>John Doe</b></h4>
-                <p>Architect & Engineer</p>
-            </div>
+    <div id="overlay"></div>
+    <div id="alertbox">
+        <div>
+            <div id="alertheader"></div>
+            <div id="alertbody"></div>
+            <div id="alertfooter"></div>
         </div>
-
-        <div class="card">
-            <div class="container">
-                <h4><b>John Doe</b></h4>
-                <p>Architect & Engineer</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="container">
-                <h4><b>John Doe</b></h4>
-                <p>Architect & Engineer</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="container">
-                <h4><b>John Doe</b></h4>
-                <p>Architect & Engineer</p>
-            </div>
-        </div>
-
     </div>
 
-    <div id="pagination">
-            <ul class="topnav">
-                    <li><a>Prev</a></li>
-                    <li class="right"><a href="#">Next</a></li>
-                </ul>
-    </div>
+    <div class="box">
+            <div>
+                <h2 class="margined"> Profile </h2>
+            </div>
+            <div class="loader" id="loader"></div>
+    
+            <div id="question">
+                <h3>No of Questions asked : <span>0</span></h3>
+                <h3>No of Questions asked : <span>0</span></h3>
+            </div>
+        </div>
 
-    <div id="footer"> 
+    <div class="box">
+            <div>
+                <h2 class="margined"> Recent Questions </h2>
+            </div>
+    
+            <div id="recent-questions">
+                <div class="card">
+                    <div class="container">
+                        <h4><b>John Doe</b></h4>
+                        <p>By: Johnah On: 30th May, 2018</p>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="box">
+                <div>
+                    <h2 class="margined"> Popular Questions </h2>
+                </div>
+        
+                <div id="popular-questions">
+                    <div class="card">
+                        <div class="container">
+                            <h4><b>John Doe</b></h4>
+                            <p>By: Johnah On: 30th May, 2018 with 4 answers</p>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+
+    <div id="footer">
         <p>All Right Reserved</p>
     </div>
 
